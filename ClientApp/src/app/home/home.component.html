@@ -1,0 +1,22 @@
+<h2>Sales</h2>
+<div class="table-responsive">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">ProuuctName</th>
+        <th scope="col">Customer name</th>
+        <th scope="col">Rate</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of final">
+       
+           <td>{{data}}</td>
+            <td><span *ngIf="!data.confirmation"><button type="button" class="btn btn-primary btn-sm" (click)="editProducts(data.productId, data.productName, data.rate, edittemplate)">Edit</button></span>&nbsp;<span><button type="button" class="btn btn-danger btn-sm" (click)="deleteProducts(data.productId)">Delete</button></span></td>
+          
+</tr>
+    </tbody>
+  </table>
+</div>

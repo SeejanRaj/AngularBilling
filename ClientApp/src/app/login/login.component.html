@@ -1,0 +1,19 @@
+
+<form class="form-signin" [formGroup]="insertForm" (ngSubmit)="onSubmit()">
+
+ 
+  <label for="inputEmail" class="sr-only">Email</label>
+  <input type="text" id="inputEmail" formControlName="Email" class="form-control" placeholder="Email" required autofocus>
+
+  <label for="inputPassword" class="sr-only">Password</label>
+  <input type="password" id="inputPassword" formControlName="Password" class="form-control" placeholder="Password" required>
+
+  <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+ 
+</form>
+<div *ngIf="Password.touched && Password.error" class="errorMessage">
+  <span *ngIf="Password.hasError('required')">Password is required</span>
+</div>
+<div *ngIf="Email.touched && Email.error" class="errorMessage">
+  <span *ngIf="Email.hasError('required')">Email is required</span>
+</div>

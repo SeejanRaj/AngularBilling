@@ -1,0 +1,71 @@
+  <!--edit modal-->
+<ng-template #edittemplate>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Edit Product.</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form class="form-signin" [formGroup]="editinsertForm" (ngSubmit)="editedonSubmit()">
+
+
+      <label for="inputName" class="sr-only">Product Name.</label>
+      <input type="text" formControlName="editproductName" class="form-control" placeholder="ProductName" required autofocus>
+
+      <label for="inputRate" class="sr-only">Rate</label>
+      <input type="text" formControlName="editrate" class="form-control" placeholder="Rate" required>
+
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Save</button>
+
+    </form>
+  </div>
+</ng-template>
+<!--edit modal-->
+<h2>Products</h2>
+<div class="table-responsive">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Name</th>
+        <th scope="col">Rate</th>
+
+        <button type="button" class="btn btn-primary" (click)="openModal(template)">Add</button>
+
+        <ng-template #template>
+          <div class="modal-header">
+            <h4 class="modal-title pull-left">Add Product</h4>
+            <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form class="form-signin" [formGroup]="insertForm" (ngSubmit)="onSubmit()">
+
+
+              <label for="inputName" class="sr-only">Product Name</label>
+              <input type="text" id="inputName" formControlName="productName" class="form-control" placeholder="ProductName" required autofocus>
+
+              <label for="inputRate" class="sr-only">Rate</label>
+              <input type="text" id="inputPassword" formControlName="rate" class="form-control" placeholder="Rate" required>
+
+              <button class="btn btn-lg btn-primary btn-block" type="submit">Save</button>
+
+            </form>
+          </div>
+        </ng-template>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of products">
+        <td>{{data.productId}}</td>
+        <td>{{data.productName}}</td>
+        <td>{{data.rate}}</td>
+        <td><span *ngIf="!data.confirmation"><button type="button" class="btn btn-primary btn-sm" (click)="editProducts(data.productId, data.productName, data.rate, edittemplate)">Edit</button></span>&nbsp;<span><button type="button" class="btn btn-danger btn-sm" (click)="deleteProducts(data.productId)">Delete</button></span></td>
+
+      </tr>
+    </tbody>
+  </table>
+</div>
